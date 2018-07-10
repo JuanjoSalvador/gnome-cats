@@ -1,1 +1,6 @@
-src/lib/__pycache__/*
+gnome-cats/lib/__pycache__/
+*.egg-info/
+dist/
+build/
+build-dir/
+.flatpak-builder/
