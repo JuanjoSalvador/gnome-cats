@@ -1,8 +1,8 @@
 import gi
+import threading
+
 gi.require_version('Gtk', '3.0')
-
 from gi.repository import Gtk, GObject, GdkPixbuf
-
 from lib.api import Api
 
 class ApplicationWindow(Gtk.Window):
@@ -22,15 +22,22 @@ class ApplicationWindow(Gtk.Window):
         window = app_builder.get_object("mainWindow")
         window.show_all()
 
-        Api.get_cat()
+        thread = threading.Thread(target=Api.get_cat())
+        thread.daemon = True
+        thread.start()
+
         image = ApplicationWindow.builder.get_object('cat_picture')
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale('cat.jpg', width=600, height=600, preserve_aspect_ratio=True)
         image.set_from_pixbuf(pixbuf)
         image.show()
 
     def on_button_meow(self, *args):
-        Api.get_cat()
         image = ApplicationWindow.builder.get_object('cat_picture')
+
+        thread = threading.Thread(target=Api.get_cat())
+        thread.daemon = True
+        thread.start()
+
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale('cat.jpg', width=600, height=600, preserve_aspect_ratio=True)
         image.set_from_pixbuf(pixbuf)
         image.show()
@@ -41,3 +48,5 @@ class ApplicationWindow(Gtk.Window):
         """
 
         Gtk.main_quit(*args)
+
+    

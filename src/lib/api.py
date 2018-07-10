@@ -1,6 +1,4 @@
-import urllib.request
-import gi
-from gi.repository import GdkPixbuf
+import urllib.request, threading
 
 class Api():
 
