@@ -1,9 +1,5 @@
 import gi
 import threading, os
-<<<<<<< HEAD
-import simpleaudio as sa
-=======
->>>>>>> f596961cc8bdebb7244bb2a89c03cd31450dc837
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GObject, GdkPixbuf
@@ -31,30 +27,18 @@ class ApplicationWindow(Gtk.Window):
         thread.start()
 
         image = ApplicationWindow.builder.get_object('cat_picture')
-<<<<<<< HEAD
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale('cat.jpg', width=450, height=600, preserve_aspect_ratio=True)
-=======
-        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale('cat.jpg', width=600, height=600, preserve_aspect_ratio=True)
->>>>>>> f596961cc8bdebb7244bb2a89c03cd31450dc837
         image.set_from_pixbuf(pixbuf)
         image.show()
 
     def on_button_meow(self, *args):
         image = ApplicationWindow.builder.get_object('cat_picture')
 
-<<<<<<< HEAD
         thread_image = threading.Thread(target=Api.get_cat())
         thread_image.daemon = True
         thread_image.start()
 
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale('cat.jpg', width=450, height=600, preserve_aspect_ratio=True)
-=======
-        thread = threading.Thread(target=Api.get_cat())
-        thread.daemon = True
-        thread.start()
-
-        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale('cat.jpg', width=600, height=600, preserve_aspect_ratio=True)
->>>>>>> f596961cc8bdebb7244bb2a89c03cd31450dc837
         image.set_from_pixbuf(pixbuf)
         image.show()
 
@@ -64,8 +48,3 @@ class ApplicationWindow(Gtk.Window):
         """
 
         Gtk.main_quit(*args)
-<<<<<<< HEAD
-=======
-
-    
->>>>>>> f596961cc8bdebb7244bb2a89c03cd31450dc837
