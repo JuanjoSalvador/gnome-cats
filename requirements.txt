@@ -1,3 +1,7 @@
 PyGObject==3.28.3
+<<<<<<< HEAD
 playsound==1.2.2
 pycairo==1.17.1
+=======
+
+>>>>>>> f596961cc8bdebb7244bb2a89c03cd31450dc837
