@@ -4,4 +4,4 @@ dist/
 build/
 build-dir/
 .flatpak-builder/
-
+env/
