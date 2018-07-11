@@ -1,0 +1,5 @@
+#!/usr/bin/python3.6
+
+from gnomeCats.__main__ import GnomeCats
+
+GnomeCats.main()
