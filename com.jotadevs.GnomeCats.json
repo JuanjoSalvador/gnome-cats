@@ -3,9 +3,9 @@
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "3.28",
     "sdk" : "org.gnome.Sdk",
-    "command" : "gnome-cats",
+    "command" : "/app/share/gnome-cats/__main__.py",
     "finish-args" : [
-        "--share=network"
+        "--share=network",
     ],
     "modules" : [
         {
@@ -28,8 +28,7 @@
             },
             "build-commands" : [
                 "cp -r gnome-cats ${FLATPAK_DEST}/share/",
-                "pip3 install ${FLATPAK_DEST}/share/gnome-cats/",
-		"ln -s ${FLATPAK_DEST}/share/gnome-cats/__main__.py"
+                "pip3 install ${FLATPAK_DEST}/share/gnome-cats/"
             ],
             "sources" : [
                 {
@@ -38,5 +37,9 @@
                 }
             ]
         }
-    ]
+    ],
+    "build-options" : {
+        "env" : {
+        }
+    }
 }
