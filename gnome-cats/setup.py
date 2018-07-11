@@ -13,6 +13,6 @@ setup(
         'Development Status :: 1 - Planning',
     ],
     install_requires=[
-        'PyGObject==3.28.1',
+        'PyGObject~=3.28.0',
     ],
 )

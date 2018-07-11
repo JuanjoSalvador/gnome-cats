@@ -11,32 +11,18 @@
     ],
     "modules" : [
         {
-            "name" : "cpython",
-            "sources" : [
-                {
-                    "type" : "archive",
-                    "url" : "https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz",
-                    "sha256" : "d79bc15d456e73a3173a2938f18a17e5149c850ebdedf84a78067f501ee6e16f"
-                }
-            ]
-        },
-        {
             "name" : "gnome-cats",
-            "buildsystem" : "simple",
-            "build-options" : {
-                "build-args" : [
-                    "--share=network"
-                ]
-            },
-            "build-commands" : [
-                "cp -r gnome-cats ${FLATPAK_DEST}/share/",
-                "pip3 install ${FLATPAK_DEST}/share/gnome-cats/"
-            ],
             "sources" : [
                 {
                     "type" : "dir",
-                    "path" : "gnome-cats/"
+                    "path" : "gnome-cats"
                 }
+            ],
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "mkdir -p /app/share",
+                "cp -r gnome-cats ${FLATPAK_DEST}/share",
+                "rm ${FLATPAK_DEST}/share/gnome-cats/{setup.py,requirements.txt}"
             ]
         }
     ],
