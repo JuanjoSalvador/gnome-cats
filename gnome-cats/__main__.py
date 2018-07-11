@@ -16,7 +16,7 @@ class ApplicationWindow(Gtk.Window):
     def __init__(self):
         app_builder = ApplicationWindow.builder
 
-        app_builder.add_from_file(os.path.join(os.path.dirname(os.path.abspath(__file__)), "application.ui")))
+        app_builder.add_from_file(os.path.join(os.path.dirname(__file__), "application.ui"))
 
         app_builder.connect_signals(ApplicationWindow)
 

@@ -5,3 +5,4 @@ build/
 build-dir/
 .flatpak-builder/
 env/
+cat.jpg

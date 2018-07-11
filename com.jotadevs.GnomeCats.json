@@ -28,8 +28,9 @@
             },
             "build-commands": [
                 "install -D setup.py /app/gnome-cats/setup.py",
-                "cp -r gnome-cats/ /app/gnome-cats/gnome-cats",
-                "pip3 install /app/gnome-cats"
+                "cp -r gnome-cats /app/gnome-cats",
+		"cp gnome-cats/application.ui /app/gnome-cats",
+                "pip3 install /app/gnome-cats/"
             ],
             "sources": [
                 {
@@ -48,17 +49,17 @@
             "buildsystem": "simple",
             "build-commands": [
                 "install -D runner.sh /app/bin/runner.sh",
-		            "install -D __main__.py /app/gnome-cats/__main__.py"
+                "install -D __main__.py /app/gnome-cats/__main__.py"
             ],
             "sources": [
                 {
                     "type": "file",
                     "path": "gnome-cats/bin/runner.sh"
                 },
-		            {
-		                "type": "file",
-	                   "path": "gnome-cats/__main__.py"
-		            }
+                {
+                    "type": "file",
+                    "path": "gnome-cats/__main__.py"
+                }
             ]
         }
     ]
