@@ -29,7 +29,7 @@
             "build-commands": [
                 "install -D setup.py /app/gnome-cats/setup.py",
                 "cp -r gnome-cats /app/gnome-cats",
-		"cp gnome-cats/application.ui /app/gnome-cats",
+		            "cp gnome-cats/application.ui /app/gnome-cats",
                 "pip3 install /app/gnome-cats/"
             ],
             "sources": [
