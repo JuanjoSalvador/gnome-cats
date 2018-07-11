@@ -1,64 +1,40 @@
 {
-    "app-id": "com.jotadevs.GnomeCats",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "3.28",
-    "sdk": "org.gnome.Sdk",
-    "command": "runner.sh",
-    "finish-args": [
-      "--share=network"
+    "app-id" : "com.jotadevs.GnomeCats",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "3.28",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "gnome-cats",
+    "finish-args" : [
+        "--share=network"
     ],
-    "modules": [
-  	     {
-              "name": "cpython",
-              "sources": [
-                  {
-                      "type": "archive",
-                      "url": "https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz",
-                      "sha256": "d79bc15d456e73a3173a2938f18a17e5149c850ebdedf84a78067f501ee6e16f"
-                  }
-              ]
-          },
-          {
-            "name": "app-install",
-            "buildsystem": "simple",
-            "build-options": {
-                "build-args": [
-                    "--share=network"
-                ]
-            },
-            "build-commands": [
-                "install -D setup.py /app/gnome-cats/setup.py",
-                "cp -r gnome-cats /app/gnome-cats",
-		"cp gnome-cats/application.ui /app/gnome-cats",
-                "pip3 install /app/gnome-cats/"
-            ],
-            "sources": [
+    "modules" : [
+        {
+            "name" : "cpython",
+            "sources" : [
                 {
-                    "type": "file",
-                    "path": "setup.py"
-                },
-                {
-                    "type": "dir",
-                    "path": "gnome-cats/",
-                    "dest": "gnome-cats/"
+                    "type" : "archive",
+                    "url" : "https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz",
+                    "sha256" : "d79bc15d456e73a3173a2938f18a17e5149c850ebdedf84a78067f501ee6e16f"
                 }
             ]
         },
         {
-            "name": "runner",
-            "buildsystem": "simple",
-            "build-commands": [
-                "install -D runner.sh /app/bin/runner.sh",
-                "install -D __main__.py /app/gnome-cats/__main__.py"
+            "name" : "gnome-cats",
+            "buildsystem" : "simple",
+            "build-options" : {
+                "build-args" : [
+                    "--share=network"
+                ]
+            },
+            "build-commands" : [
+                "cp -r gnome-cats ${FLATPAK_DEST}/share/",
+                "pip3 install ${FLATPAK_DEST}/share/gnome-cats/",
+		"ln -s ${FLATPAK_DEST}/share/gnome-cats/__main__.py"
             ],
-            "sources": [
+            "sources" : [
                 {
-                    "type": "file",
-                    "path": "gnome-cats/bin/runner.sh"
-                },
-                {
-                    "type": "file",
-                    "path": "gnome-cats/__main__.py"
+                    "type" : "dir",
+                    "path" : "gnome-cats/"
                 }
             ]
         }

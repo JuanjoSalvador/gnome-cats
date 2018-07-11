@@ -1,4 +1,0 @@
-playsound==1.2.2
-pycairo==1.17.1
-PyGObject==3.28.3
-simpleaudio==1.0.2
