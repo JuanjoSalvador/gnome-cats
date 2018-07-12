@@ -6,3 +6,4 @@ build-dir/
 .flatpak-builder/
 env/
 cat.jpg
+gnome-cats/cat.jpg

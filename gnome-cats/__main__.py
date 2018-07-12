@@ -52,13 +52,10 @@ class ApplicationWindow(Gtk.Window):
 
         Gtk.main_quit(*args)
 
-class GnomeCats():
+"""
+Main window for GNOME Cats
+"""
+app = ApplicationWindow()
 
-    def main():
-        """
-        Main window for GNOME Cats
-        """
-        app = ApplicationWindow()
-
-        # Main loop
-        Gtk.main()
+# Main loop
+Gtk.main()
