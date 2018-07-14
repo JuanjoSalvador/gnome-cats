@@ -15,14 +15,17 @@
             "sources" : [
                 {
                     "type" : "dir",
-                    "path" : "gnome-cats"
+                    "path" : "gnome-cats",
+                    "skip" : [
+                        "setup.py",
+                        "requirements.txt"
+                    ]
                 }
             ],
             "buildsystem" : "simple",
             "build-commands" : [
-                "mkdir -p /app/share",
-                "cp -r gnome-cats ${FLATPAK_DEST}/share",
-                "rm ${FLATPAK_DEST}/share/gnome-cats/{setup.py,requirements.txt}"
+                "mkdir -p ${FLATPAK_DEST}/share/gnome-cats",
+                "cp -r * ${FLATPAK_DEST}/share/gnome-cats"
             ]
         }
     ],
