@@ -4,5 +4,3 @@ dist/
 build/
 .flatpak-builder/
 env/
-cat.jpg
-gnome-cats/cat.jpg

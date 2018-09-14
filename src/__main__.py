@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
 
-import gi, urllib.request, threading
+import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GObject, GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf, Gio
 
-def get_cat():
-    urllib.request.urlretrieve('http://cataas.com/cat', 'cat.jpg')
+def get_cat_stream():
+    return Gio.File.new_for_uri('http://cataas.com/cat')
 
 class Handlers():
     def change_picture(self, picture):
-        threading.Thread(target=get_cat(), daemon=True).start()
-
-        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale('cat.jpg',
-                                                         width=450,
-                                                         height=600,
-                                                         preserve_aspect_ratio=True)
-        picture.set_from_pixbuf(pixbuf)
+        cat = GdkPixbuf.Pixbuf.new_from_stream_at_scale(get_cat_stream().read(),
+                                                        width=450,
+                                                        height=600,
+                                                        preserve_aspect_ratio=True)
+        picture.set_from_pixbuf(cat)
         picture.show()
 
     def quit(*args):
