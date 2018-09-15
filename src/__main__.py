@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import gi
+import gi, os
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GdkPixbuf, Gio
 
@@ -10,7 +10,7 @@ def get_cat_file():
 class App():
     def __init__(self):
         ui = Gtk.Builder()
-        ui.add_from_file("application.ui")
+        ui.add_from_file(os.path.join(os.path.dirname(__file__), "application.ui"))
         ui.connect_signals(self)
 
         window = ui.get_object("mainWindow")

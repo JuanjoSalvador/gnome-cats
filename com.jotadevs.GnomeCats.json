@@ -7,7 +7,8 @@
     "finish-args" : [
         "--share=network",
         "--socket=wayland",
-        "--socket=x11"
+        "--socket=x11",
+        "--talk-name=org.gtk.vfs.*"
     ],
     "modules" : [
         {
@@ -15,7 +16,7 @@
             "sources" : [
                 {
                     "type" : "dir",
-                    "path" : "gnome-cats",
+                    "path" : "src",
                     "skip" : [
                         "setup.py",
                         "requirements.txt"
