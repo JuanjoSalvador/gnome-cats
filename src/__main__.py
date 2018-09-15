@@ -9,8 +9,8 @@ def get_cat_file():
 
 class App():
     def __init__(self):
-        ui = Gtk.Builder()
-        ui.add_from_file(os.path.join(os.path.dirname(__file__), "application.ui"))
+        ui = Gtk.Builder.new_from_file(os.path.join(os.path.dirname(__file__),
+                                                      "application.ui"))
         ui.connect_signals(self)
 
         window = ui.get_object("mainWindow")
