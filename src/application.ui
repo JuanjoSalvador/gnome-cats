@@ -19,20 +19,41 @@
     </child>
     <child>
       <object class="GtkBox">
-        <property name="name">mainWindow</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">10</property>
+        <property name="margin_right">10</property>
+        <property name="margin_top">10</property>
+        <property name="margin_bottom">10</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
         <property name="baseline_position">bottom</property>
         <child>
-          <object class="GtkImage" id="cat_image">
+          <object class="GtkOverlay" id="overlay">
             <property name="visible">True</property>
+            <property name="app_paintable">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">10</property>
-            <property name="margin_right">10</property>
-            <property name="margin_top">10</property>
-            <property name="margin_bottom">10</property>
-            <property name="stock">gtk-missing-image</property>
+            <signal name="size-allocate" handler="scale_and_show_image" object="image" swapped="no"/>
+            <child>
+              <placeholder/>
+            </child>
+            <child type="overlay">
+              <object class="GtkSpinner" id="load_spinner">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="active">True</property>
+              </object>
+            </child>
+            <child type="overlay">
+              <object class="GtkImage" id="image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-missing-image</property>
+              </object>
+              <packing>
+                <property name="index">-1</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -41,32 +62,20 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSpinner" id="load_spinner">
-            <property name="can_focus">False</property>
-            <property name="active">True</property>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="new_cat">
+          <object class="GtkButton" id="new_image">
             <property name="label" translatable="yes">Meow</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
+            <property name="has_focus">True</property>
             <property name="receives_default">True</property>
             <property name="halign">center</property>
-            <property name="valign">baseline</property>
-            <property name="margin_bottom">25</property>
-            <signal name="clicked" handler="load_new_image" object="cat_image" after="yes" swapped="no"/>
+            <signal name="clicked" handler="load_new_image" object="image" after="yes" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="pack_type">end</property>
-            <property name="position">2</property>
+            <property name="padding">10</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
