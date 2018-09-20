@@ -5,7 +5,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GdkPixbuf, Gio
 
 def get_cat_file():
-    return Gio.File.new_for_uri('http://cataas.com/cat')
+    return Gio.File.new_for_uri('https://cataas.com/cat')
 
 class App(Gtk.Application):
     def __init__(self, *args, **kwargs):
