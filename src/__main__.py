@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import gi, os, sys
+import gi, sys
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GdkPixbuf, Gio
 
@@ -14,8 +14,10 @@ class App(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
-        self.ui = Gtk.Builder.new_from_file(os.path.join(os.path.dirname(__file__),
-                                                         "application.ui"))
+        self.ui = Gtk.Builder.new_from_file(Gio.File.new_for_path(__file__)
+                                                    .get_parent()
+                                                    .get_path()
+                                                    + "/application.ui")
         self.ui.connect_signals(self)
 
         self.add_window(self.ui.get_object("mainWindow"))
