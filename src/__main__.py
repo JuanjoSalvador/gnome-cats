@@ -9,7 +9,9 @@ def get_cat_file():
 
 class App(Gtk.Application):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, application_id="com.jotadevs.GnomeCats", **kwargs)
+        super().__init__(*args,
+                         application_id="com.jotadevs.GnomeCats",
+                         **kwargs)
         self.cat_pixbuf = None
 
     def do_startup(self):
@@ -24,31 +26,33 @@ class App(Gtk.Application):
         self.get_window_by_id(1).present()
 
         self.load_spinner = self.ui.get_object("load_spinner")
-        self.load_new_image(self.ui.get_object("image"))
+        self.load_and_show_new_image(self.ui.get_object("image"))
 
     def do_activate(self):
         pass
 
-    def load_new_image(self, image):
+    def load_and_show_new_image(self, image):
         image.hide()
         self.load_spinner.start()
         get_cat_file().read_async(0, None, self.on_ready_new_image, image)
 
-    def on_ready_new_image(self, cat_stream, result, image):
-        self.cat_pixbuf = GdkPixbuf.Pixbuf.new_from_stream(cat_stream.read_finish(result))
+    def on_ready_new_image(self, cat, res, image):
+        self.cat_pixbuf = GdkPixbuf.Pixbuf.new_from_stream(cat.read_finish(res))
         self.load_spinner.stop()
-        self.scale_and_show_image(image, image.get_allocation())
+        self.scale_image(image, image.get_allocation())
+        image.show()
 
-    def scale_and_show_image(self, image, dest, *args):
+    def scale_image(self, image, dest, *args):
         if self.cat_pixbuf:
             factor = min(dest.width / self.cat_pixbuf.get_width(),
                          dest.height / self.cat_pixbuf.get_height())
 
-            scaled = GdkPixbuf.Pixbuf.scale_simple(self.cat_pixbuf,
-                                                   self.cat_pixbuf.get_width() * factor,
-                                                   self.cat_pixbuf.get_height() * factor,
-                                                   GdkPixbuf.InterpType.BILINEAR)
+            scaled = GdkPixbuf.Pixbuf.scale_simple(
+                                          self.cat_pixbuf,
+                                          self.cat_pixbuf.get_width() * factor,
+                                          self.cat_pixbuf.get_height() * factor,
+                                          GdkPixbuf.InterpType.BILINEAR
+                                      )
             image.set_from_pixbuf(scaled)
-            image.show()
 
 App().run(sys.argv)

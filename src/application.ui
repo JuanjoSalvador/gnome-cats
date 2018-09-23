@@ -19,7 +19,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="receives_default">True</property>
-            <signal name="clicked" handler="load_new_image" object="image" swapped="no"/>
+            <signal name="clicked" handler="load_and_show_new_image" object="image" swapped="no"/>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
@@ -41,22 +41,22 @@
         <property name="margin_right">10</property>
         <property name="margin_top">10</property>
         <property name="margin_bottom">10</property>
-        <signal name="size-allocate" handler="scale_and_show_image" object="image" swapped="no"/>
+        <signal name="size-allocate" handler="scale_image" object="image" swapped="no"/>
         <child>
           <placeholder/>
-        </child>
-        <child type="overlay">
-          <object class="GtkSpinner" id="load_spinner">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="active">True</property>
-          </object>
         </child>
         <child type="overlay">
           <object class="GtkImage" id="image">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="stock">gtk-missing-image</property>
+          </object>
+        </child>
+        <child type="overlay">
+          <object class="GtkSpinner" id="load_spinner">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="active">True</property>
           </object>
           <packing>
             <property name="index">-1</property>
