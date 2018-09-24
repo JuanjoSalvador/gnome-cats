@@ -20,6 +20,7 @@ class App(Gtk.Application):
                                                     .get_parent()
                                                     .get_path()
                                                     + "/application.ui")
+        self.ui.get_object("aboutWindow").destroy()
         self.ui.connect_signals(self)
 
         self.add_window(self.ui.get_object("mainWindow"))
@@ -54,5 +55,13 @@ class App(Gtk.Application):
                                           GdkPixbuf.InterpType.BILINEAR
                                       )
             image.set_from_pixbuf(scaled)
+
+    def show_about(self, *args):
+        self.ui.add_objects_from_file(Gio.File.new_for_path(__file__)
+                                              .get_parent()
+                                              .get_path()
+                                              + "/application.ui",
+                                      ["aboutWindow"])
+        self.ui.get_object("aboutWindow").present()
 
 App().run(sys.argv)
