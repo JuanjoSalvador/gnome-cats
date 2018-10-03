@@ -45,7 +45,30 @@
                 <property name="icon_name">view-refresh-symbolic.symbolic</property>
               </object>
             </child>
+            <accelerator key="Return" signal="clicked"/>
           </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="save_image">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="save_image" object="mainWindow" swapped="no"/>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">document-save-symbolic.symbolic</property>
+              </object>
+            </child>
+            <accelerator key="s" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
         </child>
         <child>
           <object class="GtkMenuButton">
@@ -63,7 +86,7 @@
           </object>
           <packing>
             <property name="pack_type">end</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
