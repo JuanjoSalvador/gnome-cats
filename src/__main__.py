@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 
-import gi, sys
+import gi, sys, locale
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GdkPixbuf, Gio
+
+PARENT_DIR_PATH = Gio.File.new_for_path(__file__).get_parent().get_path()
+APP_NAME = "gnome-cats"
+
+locale.bindtextdomain(APP_NAME, PARENT_DIR_PATH + "/locale")
+locale.textdomain(APP_NAME)
 
 def get_cat_ref():
     return Gio.File.new_for_uri('https://cataas.com/cat')
@@ -17,14 +23,16 @@ class App(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
-        self.ui = Gtk.Builder.new_from_file(Gio.File.new_for_path(__file__)
-                                                    .get_parent()
-                                                    .get_path()
-                                                    + "/application.ui")
+
+        self.ui = Gtk.Builder.new()
+        self.ui.set_translation_domain(APP_NAME)
+        self.ui.add_from_file(PARENT_DIR_PATH + "/application.ui")
+
         self.ui.get_object("aboutWindow").destroy()
         self.ui.connect_signals(self)
 
-        self.add_window(self.ui.get_object("mainWindow"))
+        win = self.ui.get_object("mainWindow")
+        self.add_window(win)
         self.get_window_by_id(1).present()
 
         self.load_spinner = self.ui.get_object("load_spinner")
@@ -93,10 +101,7 @@ class App(Gtk.Application):
                                 None)
 
     def show_about(self, *args):
-        self.ui.add_objects_from_file(Gio.File.new_for_path(__file__)
-                                              .get_parent()
-                                              .get_path()
-                                              + "/application.ui",
+        self.ui.add_objects_from_file(PARENT_DIR_PATH + "/application.ui",
                                       ["aboutWindow"])
         self.ui.get_object("aboutWindow").present()
 
