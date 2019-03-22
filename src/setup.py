@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from setuptools import setup, find_packages
 
 setup(
@@ -13,6 +15,6 @@ setup(
     ],
     scripts=['bin/gnome-cats'],
     install_requires=[
-        'PyGObject==3.28.1',
+        'PyGObject~=3.28.0',
     ],
 )
